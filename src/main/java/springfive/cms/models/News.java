@@ -12,4 +12,18 @@ public class News {
     private Set<Review> reviewers;
     private Set<Category> categories;
     private Set<Tag> tags;
+
+    public Review review(String userId, String status) {
+        final var review = new Review(userId, status);
+
+        reviewers.add(review);
+
+        return review;
+    }
+
+    public Boolean revised() {
+        return mandatoryReviewers.stream().allMatch(user ->
+                reviewers.stream().anyMatch(review -> user.getId().equals(review.getUserId()) &&
+                        "approved".equals(review.getStatus())));
+    }
 }

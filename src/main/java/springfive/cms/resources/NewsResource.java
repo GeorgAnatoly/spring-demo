@@ -21,7 +21,7 @@ public class NewsResource {
 
     @GetMapping
     public ResponseEntity<List<News>> findAll() {
-        return ResponseEntity.ok(Arrays.asList(new News, new News));
+        return ResponseEntity.ok(Arrays.asList(new News(), new News()));
     }
 
     @PostMapping
@@ -49,6 +49,6 @@ public class NewsResource {
 
     @GetMapping("/revised")
     public ResponseEntity<List<News>> revisedNews() {
-        return ResponseEntity.ok(Arrays.asList(new News, new News));
+        return ResponseEntity.ok(Arrays.asList(new News(), new News()));
     }
 }

@@ -20,7 +20,7 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-        return ResponseEntity.ok(Arrays.asList(new User, new User));
+        return ResponseEntity.ok(Arrays.asList(new User(), new User()));
     }
 
     @PostMapping

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,11 @@ public class CategoryResource {
             @ApiResponse(code = 404, message = "Categories not found")
     })
     public ResponseEntity<List<Category>> findAll() {
-        return ResponseEntity.ok(Arrays.asList(new Category(), new Category()));
+        var responseHeaders = new HttpHeaders();
+        responseHeaders.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:63342");
+        // added to allow angularJS test app to make requests from this specific resource
+
+        return ResponseEntity.ok().headers(responseHeaders).body(Arrays.asList(new Category(), new Category()));
     }
 
     @PostMapping
